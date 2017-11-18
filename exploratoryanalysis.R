@@ -13,6 +13,12 @@ colnames(df)<-c("Class","Frequency")
 pie1<-ggplot(df,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different classes of fire")+coord_polar(theta="y")
 pie1
 
+#pie chart with causes of fire
+dfa<-data.frame(table(fires$STAT_CAUSE_DESCR))
+colnames(dfa)<-c("Class","Frequency")
+pie2<-ggplot(dfa,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different causes of fire")+coord_polar(theta="y")
+pie2
+
 #Most common Cause of Fire
 p2 <- as.data.frame(table(fires$STAT_CAUSE_DESCR))
 p2 <- p2[with(p2,order(-Freq)),]
