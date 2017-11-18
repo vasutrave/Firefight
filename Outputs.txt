@@ -1,0 +1,82 @@
+
+#Decision tree
+p <- predict(dtree_fit,newdata = test)
+> 
+  > acc <- round(sum(test$season==p)/length(p),4)
+  > 
+    > con <- table(test$season,p)
+    > con
+    p
+    1      2      3      4
+    1 168313  26892      0  14689
+    2  76038 108254      0  15578
+    3  65809  28090      0  10355
+    4  75907   8914      0  18797
+    > sum(diag(con))/sum(con)
+    [1] 0.4782169
+
+#Using confusionmatrix:
+ confusionMatrix(test$season,p)
+Confusion Matrix and Statistics
+
+          Reference
+Prediction      1      2      3      4
+         1 168313  26892      0  14689
+         2  76038 108254      0  15578
+         3  65809  28090      0  10355
+         4  75907   8914      0  18797
+
+Overall Statistics
+                                         
+               Accuracy : 0.4782         
+                 95% CI : (0.477, 0.4795)
+    No Information Rate : 0.6251         
+    P-Value [Acc > NIR] : 1              
+                                         
+                  Kappa : 0.2341         
+ Mcnemar's Test P-Value : <2e-16         
+
+Statistics by Class:
+
+                     Class: 1 Class: 2 Class: 3 Class: 4
+Sensitivity            0.4360   0.6288       NA  0.31635
+Specificity            0.8204   0.7943   0.8312  0.84805
+Pos Pred Value         0.8019   0.5416       NA  0.18141
+Neg Pred Value         0.4660   0.8471       NA  0.92097
+Prevalence             0.6251   0.2787   0.0000  0.09620
+Detection Rate         0.2725   0.1753   0.0000  0.03043
+Detection Prevalence   0.3398   0.3236   0.1688  0.16777
+Balanced Accuracy      0.6282   0.7116       NA  0.58220
+    
+#Random Forest
+ confusionMatrix(y_test,preds)
+Confusion Matrix and Statistics
+
+          Reference
+Prediction     1     2     3     4
+         1 51891  3851     0     0
+         2 33103 20267     0     0
+         3 24167  3456     0     0
+         4 27270   778     0     0
+
+Overall Statistics
+                                          
+               Accuracy : 0.4379          
+                 95% CI : (0.4355, 0.4403)
+    No Information Rate : 0.8279          
+    P-Value [Acc > NIR] : 1               
+                                          
+                  Kappa : 0.1537          
+ Mcnemar's Test P-Value : NA              
+
+Statistics by Class:
+
+                     Class: 1 Class: 2 Class: 3 Class: 4
+Sensitivity            0.3803   0.7148       NA       NA
+Specificity            0.8642   0.7574   0.8324   0.8298
+Pos Pred Value         0.9309   0.3797       NA       NA
+Neg Pred Value         0.2247   0.9274       NA       NA
+Prevalence             0.8279   0.1721   0.0000   0.0000
+Detection Rate         0.3149   0.1230   0.0000   0.0000
+Detection Prevalence   0.3383   0.3239   0.1676   0.1702
+Balanced Accuracy      0.6223   0.7361       NA       NA
