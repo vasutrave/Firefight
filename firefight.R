@@ -15,14 +15,14 @@ df<-data.frame(table(fires$FIRE_SIZE_CLASS))
 colnames(df)<-c("Class","Frequency")
 
 #Pie chart with diff classes of fire
-pie1<-ggplot(df,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different classes of fire")+coord_polar(theta="y")
-pie1
+#pie1<-ggplot(df,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different classes of fire")+coord_polar(theta="y")
+#pie1
 
 #pie chart with causes of fire
-dfa<-data.frame(table(fires$STAT_CAUSE_DESCR))
-colnames(dfa)<-c("Class","Frequency")
-pie2<-ggplot(dfa,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different causes of fire")+coord_polar(theta="y")
-pie2
+#dfa<-data.frame(table(fires$STAT_CAUSE_DESCR))
+#colnames(dfa)<-c("Class","Frequency")
+#pie2<-ggplot(dfa,aes(x="", y=Frequency, fill=Class))+geom_bar(width=1,stat="identity")+ggtitle("Different causes of fire")+coord_polar(theta="y")
+#pie2
 
 #Heat maps
 df1<-data.frame(STATE=fires$STATE,FIRE_SIZE=fires$FIRE_SIZE,CAUSE=fires$STAT_CAUSE_DESCR,YEAR=fires$FIRE_YEAR)
@@ -48,19 +48,7 @@ df2<-acast(df2,STATE~CAUSE,value.var="FIRE_SIZE")
 df2<-as.matrix(df2)
 hm<-heatmap(df2,Rowv=NA,Colv=NA,col=heat.colors(256),scale="column",margins=c(5,5),main="Heat map of fire sizes for different counties for different causes during the period 2009-2015")
 
-#logistic regression
-arr<-c("STAT_CAUSE_CODE","FIRE_SIZE_CLASS","FIRE_YEAR","STATE","DISCOVERY_DOY")
-df2<-fires[arr]
-df2[is.na(df2)]<-0
-len <- round(0.9 * nrow(df2))
-train <- df2[c(1:len),]
-test <- df2[(len+1):nrow(df2),]
-logistic <- glm(factor(STAT_CAUSE_CODE) ~ FIRE_SIZE_CLASS+STATE+DISCOVERY_DOY,family=binomial(link = "logit"),data=train)
-print(summary(logistic))
-p1<-predict(logistic,test,type="response")
-er<-test$STAT_CAUSE_CODE-p1
-er1<-er/test$STAT_CAUSE_CODE
-er2<-mean(abs((er1)))*100
+
 
 #map
 df3<-read.csv("E:/academics/5th_sem/Data Analytics/project/state_map1.csv")
