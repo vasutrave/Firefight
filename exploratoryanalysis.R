@@ -65,6 +65,6 @@ p <- plot_ly(
   y = p3$Freq,
   name = "Numbers of fires according to the cause",
   type = "bar"
-) %>% layout(title = "Nubers of fires according to the Counties",xaxis = list(title = "Counties"), yaxis = list(title ="Number of Fires"))
+) %>% layout(title = "Numbers of fires according to the Counties",xaxis = list(title = "Counties"), yaxis = list(title ="Number of Fires"))
 p
 
