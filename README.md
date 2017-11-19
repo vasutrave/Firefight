@@ -5,19 +5,22 @@ Data analytics-2017 Project
 This project is mainly aimed at analysing wildfires in the US 1992-2015
 
 #Exploratory Analysis:
+
 (exploratoryanalysis.r)
-The number of fires over the years are categorrixed on the basis of the state 
+The number of fires over the years are categorized on the basis of the state 
 they occured in, counties, what were they caused by, what was the share of 
 large fires etc .
+
 (firefight.r)
 Here we tried to plot heat maps and a geographical map showing the density of number
 of fires in that particular state.
+
 
 #Classification and Regression :
 
 Logistic regression model was applied to see how we could predict the cause of the fire
 given where it occured, how huge it was and in when it occured. Hence we found out 
-that logistic regression doesnt really perform well on this prediction.
+that logistic regression does not really perform well on this prediction.
 (logistic.r)
 
 (Running these models takes 10mins-20mins depending on the system)
